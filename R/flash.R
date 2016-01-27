@@ -6,6 +6,7 @@
 ##' @param session session
 ##' @param text text
 ##' @param type type: boostrap types ['info', 'warning', 'alert', 'success']
+##' @export
 flash <- function(session, text, type='info') {
     session$sendCustomMessage(
         type='flash', list(message=text, type=type)
@@ -15,7 +16,9 @@ flash <- function(session, text, type='info') {
 ##' Called in the UI to create a spot for flashing alerts.
 ##' @title Create a location to flash messages
 ##' @param id Optional id of div
-flashPoint <- function(id='') {
-    ftag <- shiny::tag$div(class='flash-container', id=id)
+##' @param ... Additional arguments passed to flash-container div
+##' @export
+flashPoint <- function(id='', ...) {
+    ftag <- shiny::tags$div(class='flash-container', id=id, ...)
     htmltools::attachDependencies(ftag, sjsDep)
 }

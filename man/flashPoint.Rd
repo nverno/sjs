@@ -4,10 +4,12 @@
 \alias{flashPoint}
 \title{Create a location to flash messages}
 \usage{
-flashPoint(id = "")
+flashPoint(id = "", ...)
 }
 \arguments{
 \item{id}{Optional id of div}
+
+\item{...}{Additional arguments passed to flash-container div}
 }
 \description{
 Called in the UI to create a spot for flashing alerts.
