@@ -2,13 +2,14 @@ library(shiny)
 library(sjs)
 
 ui <- shinyUI(
-    pageWithSidebar(
-        flashPoint()
+    fluidPage(
+        flashPoint(),
+        titlePanel('Test flash messages'),
         sidebarLayout(
             sidebarPanel(
-                textInput('fmessage', 'Message', placeholder = 'Heyo'),
+                textInput('fmessage', 'Message', value = 'Heyo'),
                 selectInput('ftype', 'Type', choices = c('success', 'info',
-                                                         'warning', 'alert')),
+                                                         'warning', 'danger')),
                 ## numericInput('ftime', 'Time', 1e3, 5e3, value=2e3),
                 actionButton('fsend', 'Send')
             ),
@@ -23,7 +24,7 @@ server <- shinyServer(function(session, input, output) {
     output$plot <- renderPlot( hist(rnorm(1000)) )
     
     ## Send some alerts
-    observeEvent('fsend', flash(session, text=input$fmess, type=input$ftype))
+    observeEvent(input$fsend, flash(session, text=input$fmessage, type=input$ftype))
 })
 
 shinyApp(ui, server)

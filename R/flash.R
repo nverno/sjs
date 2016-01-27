@@ -5,11 +5,11 @@
 ##' @title Flash a message
 ##' @param session session
 ##' @param text text
-##' @param type type: boostrap types ['info', 'warning', 'alert', 'success']
+##' @param type type: boostrap types ['info', 'warning', 'danger', 'success']
 ##' @export
 flash <- function(session, text, type='info') {
     session$sendCustomMessage(
-        type='flash', list(message=text, type=type)
+        type='flash', list(message=HTML(text), type=type)
     )
 }
 
