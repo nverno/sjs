@@ -1,7 +1,7 @@
 // See https://github.com/leonid-shevtsov/unobtrusive_flash/blob/master/lib/assets/javascripts/unobtrusive_flash_ui.js
 // Types: success, info, warning, danger
 var Flash = {};
-Flash.flashOptions  = {type: 'info', timeout: 2000};
+Flash.flashOptions  = {type: 'info', duration: 2000};
 
 (function () {
     Flash.showFlashMessage = function(message, options) {
@@ -18,15 +18,16 @@ Flash.flashOptions  = {type: 'info', timeout: 2000};
 	$flash.hide().delay(300).slideDown(100);
 	$flash.alert();
 	
-	if (options.timeout > 0) {
+	if (options.duration > 0) {
 	    setTimeout(function() {
 		$flash.alert('close');
-	    }, options.timeout);
+	    }, options.duration);
 	}
     };
     
     var flashHandler = function(params) {
-	Flash.showFlashMessage(params.message, {type: params.type});
+	Flash.showFlashMessage(params.message,
+			       {type: params.type, duration: params.duration})
     };
     
     Shiny.addCustomMessageHandler('flash', flashHandler);

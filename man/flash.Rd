@@ -4,19 +4,21 @@
 \alias{flash}
 \title{Flash a message}
 \usage{
-flash(session, text, type = "info")
+flash(session, text, type = "info", duration = 3)
 }
 \arguments{
 \item{session}{session}
 
 \item{text}{text}
 
-\item{type}{type: boostrap types ['info', 'warning', 'alert', 'success']}
+\item{type}{type: boostrap types ['info', 'warning', 'danger', 'success']}
+
+\item{duration}{Duration of message (in seconds).  If 0, the message stays open until closed.}
 }
 \description{
-Flash an alert message bootstrap style
-Will display the alert in first of the following containers by order
-of preference: 'flash-container', 'container', 'container-fluid', 'body[0]'.
+Flash an alert message bootstrap style.  
+It will display the alert in first of the following containers, by order
+of preference: 'flash-container', 'container', 'container-fluid', 'body[0]'.  
 Use the flash-container though, since it will will be styled to come to the top.
 }
 
